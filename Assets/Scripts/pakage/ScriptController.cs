@@ -14,6 +14,17 @@ public class ScriptController : MonoBehaviour
     [Range(0, 10)]
     public int VelocitaMovimento;
 
+    public bool DashActive;
+    public float DistanceDash;
+    public float DistanceMove;
+
+    Rigidbody _RG;
+    public int jumpForce;
+
+    private void Start()
+    {
+        _RG = GetComponent<Rigidbody>();
+    }
 
     public void AddFunction(string Stringa)
     {
@@ -44,26 +55,76 @@ public class ScriptController : MonoBehaviour
         }else if(funzione == "move right")
         {
             MoveRight();
+        }else if(funzione == "dash forward")
+        {
+            DashForword();
+        }else if(funzione == "dash back")
+        {
+            DashBack();
+        }else if(funzione == "dash left")
+        {
+            DashLeft();
+        }else if(funzione == "dash right")
+        {
+            DashRight();
         }
         funzione = "";
     }
-    void MoveForword()
+
+    //BASIC MOVE
+    public void MoveForword()
     {
-        nuovaPosizione = transform.position + Vector3.forward;
+        nuovaPosizione = transform.position + Vector3.forward * DistanceMove;
+        VelocitaMovimento = 5;
     }
 
-    void MoveBack()
+    public void MoveBack()
     {
-        nuovaPosizione = transform.position - Vector3.forward;
+        nuovaPosizione = transform.position - Vector3.forward * DistanceMove;
+        VelocitaMovimento = 5;
     }
 
-    void MoveLeft()
+    public void MoveLeft()
     {
-        nuovaPosizione = transform.position - Vector3.right;
+        nuovaPosizione = transform.position + Vector3.left * DistanceMove;
+        VelocitaMovimento = 5;
     }
-    
-    void MoveRight()
+
+    public void MoveRight()
     {
-        nuovaPosizione = transform.position - Vector3.left;
+        nuovaPosizione = transform.position + Vector3.right * DistanceMove;
+        VelocitaMovimento = 5;
     }
+
+
+    //DASH----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public void DashForword()
+    {
+        nuovaPosizione = transform.position + Vector3.forward * DistanceDash;
+        VelocitaMovimento = 10;
+    }
+
+    public void DashBack()
+    {
+        nuovaPosizione = transform.position - Vector3.forward * DistanceDash;
+        VelocitaMovimento = 10;
+    }
+
+    public void DashLeft()
+    {
+        nuovaPosizione = transform.position + Vector3.left * DistanceDash;
+        VelocitaMovimento = 10;
+    }
+
+    public void DashRight()
+    {
+        nuovaPosizione = transform.position + Vector3.right * DistanceDash;
+        VelocitaMovimento = 10;
+    }
+
+    public void Jump()
+    {
+        _RG.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
 }

@@ -1,13 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class twichMessage : MonoBehaviour
 {
         private TwitchIRC IRC;
         public Chatter latestChatter;
 
-        private void Awake()
+        public UnityEvent randomEvent;
+        public UnityEvent MoveforwordEvent;
+        public UnityEvent MovebackEvent;
+        public UnityEvent MoveLeftEvent;
+        public UnityEvent MoveRightEvent;
+        [Space(10)]
+        public UnityEvent DashforwordEvent;
+        public UnityEvent DashbackEvent;
+        public UnityEvent DashLeftEvent;
+        public UnityEvent DashRightEvent;
+        public UnityEvent JumpEvent;
+
+    private void Awake()
         {
             // Place TwitchIRC.cs script on an gameObject called "TwitchIRC"
             IRC = GameObject.Find("TwitchIRC").GetComponent<TwitchIRC>();
@@ -19,42 +32,38 @@ public class twichMessage : MonoBehaviour
         // This gets called whenever a new chat message appears
         public void NewMessage(Chatter chatter)
         {
-            Debug.Log("New chatter object received! " + chatter.tags.displayName);
 
-            // Some examples on how you could use the chatter objects
+            if (chatter.message == "random move")
+            {
+              randomEvent.Invoke();
+            }else if(chatter.message == "move forward")
+            {
+              MoveforwordEvent.Invoke();
+            }else if(chatter.message == "move back")
+            {
+              MovebackEvent.Invoke();
+            }else if(chatter.message == "move left")
+            {
+              MoveLeftEvent.Invoke();
+            }else if(chatter.message == "move right")
+            {
+              MoveRightEvent.Invoke();
+            }else if(chatter.message == "dash forword")
+            {
+              DashforwordEvent.Invoke();
+            }else if(chatter.message == "dash back")
+            {
+              DashbackEvent.Invoke();
+            }else if(chatter.message == "dash left")
+            {
+              DashLeftEvent.Invoke();
+            }else if(chatter.message == "dash right")
+            {
+              DashRightEvent.Invoke();
+            }else if(chatter.message == "jump")
+            {
+              JumpEvent.Invoke();
+            }
 
-            if (chatter.tags.displayName == "Lexone")
-                Debug.Log("Chat message was sent by Lexone!");
-
-            if (chatter.HasBadge("subscriber"))
-                Debug.Log("Chat message sender is a subscriber");
-
-            if (chatter.HasBadge("moderator"))
-                Debug.Log("Chat message sender is a channel moderator");
-
-            if (chatter.MessageContainsEmote("25")) //25 = Kappa emote ID
-                Debug.Log("Chat message contained the Kappa emote");
-
-            if (chatter.message == "!join")
-                Debug.Log(chatter.tags.displayName + " said !join");
-
-            // Get chatter's name color (RGBA Format)
-            //
-            Color nameColor = chatter.GetRGBAColor();
-
-            // Check chatter's display name for unusual characters
-            //
-            // This can be useful to check for because most fonts don't support unusual characters
-            // If that's the case then you could use their login name instead (chatter.login) or use a fallback font
-            // Login name is always lowercase and can only contain characters: a-z, A-Z, 0-9, _
-            //
-            if (chatter.CheckDisplayName())
-                Debug.Log("Chatter's displayName contains characters other than a-z, A-Z, 0-9, _");
-
-
-
-
-
-            latestChatter = chatter;
         }
     }
