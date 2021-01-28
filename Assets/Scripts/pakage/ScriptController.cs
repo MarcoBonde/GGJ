@@ -9,6 +9,12 @@ public class ScriptController : MonoBehaviour
 
     public Text testoDaRipulire;
 
+    Vector3 nuovaPosizione;
+
+    [Range(0, 10)]
+    public int VelocitaMovimento;
+
+
     public void AddFunction(string Stringa)
     {
         funzione = Stringa;
@@ -16,6 +22,12 @@ public class ScriptController : MonoBehaviour
         testoDaRipulire.text = "";
 
         doFunction();
+        
+    }
+
+    private void Update()
+    {
+        transform.position = Vector3.Lerp(transform.position, nuovaPosizione, VelocitaMovimento * Time.deltaTime);
     }
 
     void doFunction()
@@ -23,12 +35,35 @@ public class ScriptController : MonoBehaviour
         if(funzione == "move forword")
         {
             MoveForword();
+        }else if(funzione == "move back")
+        {
+            MoveBack();
+        }else if(funzione == "move left")
+        {
+            MoveLeft();
+        }else if(funzione == "move right")
+        {
+            MoveRight();
         }
-
         funzione = "";
     }
     void MoveForword()
     {
-        transform.position = transform.position + Vector3.forward; 
+        nuovaPosizione = transform.position + Vector3.forward;
+    }
+
+    void MoveBack()
+    {
+        nuovaPosizione = transform.position - Vector3.forward;
+    }
+
+    void MoveLeft()
+    {
+        nuovaPosizione = transform.position - Vector3.right;
+    }
+    
+    void MoveRight()
+    {
+        nuovaPosizione = transform.position - Vector3.left;
     }
 }
