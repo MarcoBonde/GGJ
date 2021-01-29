@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
 
     public bool berserker = false;
 
+    public Light storageLight ;
+
+    public Animator fork;
+
+    public Collider stunCollider;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -70,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             slider.value += screamMultiplier;
             scream = true;
-            StartCoroutine("WaitBottomToBePressed");
+            StartCoroutine("WaitButtomToBePressed");
 
         }
 
@@ -92,7 +98,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("Berserker");
         }
 
-            //Interaction with Raycast
+        //Interaction with Raycast
         if (Input.GetKeyDown(KeyCode.E))
         {
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
@@ -103,6 +109,7 @@ public class PlayerController : MonoBehaviour
                         hit.collider.gameObject.transform.parent = transform;
                         hit.collider.gameObject.transform.position = transform.position - transform.forward;
                         print("Hit!");
+                        storageLight.intensity = 1;
                     }
                 }
         }
@@ -118,10 +125,33 @@ public class PlayerController : MonoBehaviour
         forward = transform.TransformDirection(Vector3.forward) * 100;
         Debug.DrawLine(transform.position, forward, Color.magenta);
 
+        
+
     
     }
 
-    IEnumerator WaitBottomToBePressed()
+    private void OnTriggerExit (Collider collider)
+    {
+        //Animation Forklift
+        if (collider.tag == "Forklift")
+        {
+            print("MOLETTOOO BANZAIII");
+            fork.ResetTrigger("isEntered");
+            fork.SetTrigger("isEntered");
+            stunCollider.enabled = true;
+        }
+
+        //Stun by an object
+        if (collider.tag == "StunCollider")
+        {
+            controller.enabled = false;
+            rotationSpeed = 0;
+            StartCoroutine("Stun");
+        }
+
+    }
+
+    IEnumerator WaitButtomToBePressed()
     {
         while (true)
         {
@@ -138,6 +168,17 @@ public class PlayerController : MonoBehaviour
             berserker = false;
             slider.value = 0;
             break;
+        }
+    }
+
+    IEnumerator Stun()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4f);
+            controller.enabled = true;
+            rotationSpeed = 1f;
+            stunCollider.enabled = false;
         }
     }
 }
