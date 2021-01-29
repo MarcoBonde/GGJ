@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public float runMultiplier = 1;
     public float screamMultiplier = 20;
+    public float radioMultiplier = 2;
     public bool scream = false;
     public Slider slider;
 
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public Animator fork;
 
     public Collider stunCollider;
+
+    public bool radio = false;
 
     void Start()
     {
@@ -125,9 +128,15 @@ public class PlayerController : MonoBehaviour
         forward = transform.TransformDirection(Vector3.forward) * 100;
         Debug.DrawLine(transform.position, forward, Color.magenta);
 
-        
+        if (radio == true)
+        {
+            slider.value += radioMultiplier;
 
-    
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                StartCoroutine("ButtonPressed");
+            }
+        }
     }
 
     private void OnTriggerExit (Collider collider)
@@ -181,5 +190,25 @@ public class PlayerController : MonoBehaviour
             stunCollider.enabled = false;
         }
     }
+
+    /*
+    IEnumerator ButtonPressed()
+    {
+        bool buttonDown = true;
+
+        while (buttonDown)
+        {
+            time = Time.time;
+            if (Input.GetKeyUp(KeyCode.F)) 
+            {
+                buttonDown = false;
+            }
+        }
+        if (tempoPremuto > 5)
+        {
+            radio = false;
+        }
+    }
+    */
 }
 
