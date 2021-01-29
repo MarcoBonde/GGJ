@@ -7,7 +7,7 @@ public class twichMessage : MonoBehaviour
 {
         private TwitchIRC IRC;
         public Chatter latestChatter;
-
+    /*
         public UnityEvent randomEvent;
         public UnityEvent MoveforwordEvent;
         public UnityEvent MovebackEvent;
@@ -18,7 +18,9 @@ public class twichMessage : MonoBehaviour
         public UnityEvent DashbackEvent;
         public UnityEvent DashLeftEvent;
         public UnityEvent DashRightEvent;
-        public UnityEvent JumpEvent;
+        public UnityEvent JumpEvent;*/
+
+    public UnityEvent LightOffEvent;
 
     private void Awake()
         {
@@ -32,7 +34,7 @@ public class twichMessage : MonoBehaviour
         // This gets called whenever a new chat message appears
         public void NewMessage(Chatter chatter)
         {
-
+        /*
             if (chatter.message == "random move")
             {
               randomEvent.Invoke();
@@ -64,6 +66,12 @@ public class twichMessage : MonoBehaviour
             {
               JumpEvent.Invoke();
             }
+        */
+
+        if(chatter.message == "turn off light")
+        {
+            LightOffEvent.Invoke();
+        }
 
         }
     }
