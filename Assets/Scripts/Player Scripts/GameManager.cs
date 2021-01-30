@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void StunPackage()
     {
-        Instantiate(package, obstacleSpawnPoints[counterPackage]);
+        Instantiate(package, obstacleSpawnPoints[counterPackage].position, Quaternion.identity);
 
         if(counterPackage <= obstacleSpawnPoints.Length -1)
         {
