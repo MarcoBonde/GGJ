@@ -93,16 +93,15 @@ public class PlayerController : MonoBehaviour
 
             movementSpeed = 8;
 
-            transform.Rotate(0, Input.GetAxis("Vertical") * rotationSpeed, 0);
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
 
             forward = transform.TransformDirection(Vector3.forward);
-            float currentSpeed = movementSpeed * Input.GetAxis("Horizontal");
+            curSpeed = movementSpeed * Input.GetAxis("Vertical");
             controller.SimpleMove(forward * curSpeed);
-
-            transform.Translate(new Vector3(movementSpeed, 0) * Time.deltaTime);
 
             StartCoroutine("Berserker");
         }
+        Debug.Log((Input.GetAxis("Horizontal") * rotationSpeed) *-1);
 
         //Interaction with Raycast
         if (Input.GetKeyDown(KeyCode.E))
