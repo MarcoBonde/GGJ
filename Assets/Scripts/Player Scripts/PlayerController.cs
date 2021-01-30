@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     public Collider stunCollider;
 
     public bool radio = false;
+    float tempoPremuto;
+    float tempoRadioStart;
+    public bool buttonDownRadio;
 
     void Start()
     {
@@ -130,11 +133,12 @@ public class PlayerController : MonoBehaviour
 
         if (radio == true)
         {
-            slider.value += radioMultiplier;
+            slider.value += radioMultiplier * Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.F))
+            keyPressedTimer();
+            if(tempoPremuto > 5f)
             {
-                StartCoroutine("ButtonPressed");
+                radio = false;
             }
         }
     }
@@ -171,13 +175,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Berserker()
     {
-        while (true)
-        {
             yield return new WaitForSeconds(10f);
             berserker = false;
             slider.value = 0;
-            break;
-        }
     }
 
     IEnumerator Stun()
@@ -191,24 +191,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
-    IEnumerator ButtonPressed()
-    {
-        bool buttonDown = true;
 
-        while (buttonDown)
+    void keyPressedTimer()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            time = Time.time;
-            if (Input.GetKeyUp(KeyCode.F)) 
-            {
-                buttonDown = false;
-            }
+            tempoRadioStart = Time.time;
         }
-        if (tempoPremuto > 5)
+
+        if (Input.GetKey(KeyCode.F))
         {
-            radio = false;
+            tempoPremuto = Time.time - tempoRadioStart;
+            //Debug.Log("Pressed for : " + tempoPremuto + " Seconds");
         }
     }
-    */
+
+    public void ChatCallRadio()
+    {
+        radio = true;
+    }
 }
 
