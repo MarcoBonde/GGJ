@@ -21,4 +21,8 @@ public class AddForce : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(impulse, ForceMode.Impulse);
         }
     }
+    void pacchi()
+    {
+
+    }
 }
