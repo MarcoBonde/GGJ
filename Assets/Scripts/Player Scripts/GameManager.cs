@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform[] spawnPoints;
+    public Transform[] obstacleSpawnPoints;
 
     public GameObject package;
     //public GameObject forklift;
@@ -14,22 +14,28 @@ public class GameManager : MonoBehaviour
     //public int counterForklift;
     public int counterOil;
 
+    public Transform[] spawnPackage;
+    public GameObject realBox;
+
     void Start()
     {
-        
+        Instantiate(realBox, spawnPackage[Random.Range(0, spawnPackage.Length)].position, Quaternion.identity);
     }
 
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            StunPackage();
+        }
     }
 
     public void StunPackage()
     {
-        Instantiate(package, spawnPoints[counterPackage]);
+        Instantiate(package, obstacleSpawnPoints[counterPackage].position, Quaternion.identity);
 
-        if(counterPackage <= spawnPoints.Length -1)
+        if(counterPackage <= obstacleSpawnPoints.Length -1)
         {
             counterPackage++;
         }
@@ -57,9 +63,9 @@ public class GameManager : MonoBehaviour
 
     public void StunOil()
     {
-        Instantiate(package, spawnPoints[counterOil]);
+        Instantiate(package, obstacleSpawnPoints[counterOil]);
 
-        if (counterOil <= spawnPoints.Length - 1)
+        if (counterOil <= obstacleSpawnPoints.Length - 1)
         {
             counterOil++;
         }
