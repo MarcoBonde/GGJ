@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     float tempoRadioStart;
     public bool buttonDownRadio;
 
+
+    Vector3 forward;
+    float curSpeed;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -50,18 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Movement
-        transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
-
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        float curSpeed = movementSpeed * Input.GetAxis("Vertical");
-        controller.SimpleMove(forward * curSpeed);
-
-        isWalking = Input.GetAxis("Horizontal");
-        isWalking = Input.GetAxis("Vertical");
-
-        //Running
-        isRunning = Input.GetButton("Fire3");
+        
         if (Input.GetButton("Fire3"))
         {
             animator.SetBool("isRunning", true);
@@ -85,15 +78,29 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("WaitButtomToBePressed");
 
         }
+        if(slider.value < 100)
+        {
+            //Movement
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
 
+            forward = transform.TransformDirection(Vector3.forward);
+            curSpeed = movementSpeed * Input.GetAxis("Vertical");
+            controller.SimpleMove(forward * curSpeed);
+
+            isWalking = Input.GetAxis("Horizontal");
+            isWalking = Input.GetAxis("Vertical");
+
+            //Running
+            isRunning = Input.GetButton("Fire3");
+        }
         //Berserker
-        if (slider.value == 100)
+        else if (slider.value >= 100)
         {
             berserker = true;
 
             movementSpeed = 8;
 
-            transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
+            transform.Rotate(0, Input.GetAxis("Horizontal") * -rotationSpeed, 0);
 
             forward = transform.TransformDirection(Vector3.forward);
             curSpeed = movementSpeed * Input.GetAxis("Vertical");
@@ -101,8 +108,7 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine("Berserker");
         }
-        Debug.Log((Input.GetAxis("Horizontal") * rotationSpeed) *-1);
-
+        print(Input.GetAxis("Horizontal") * rotationSpeed);
         //Interaction with Raycast
         if (Input.GetKeyDown(KeyCode.E))
         {
