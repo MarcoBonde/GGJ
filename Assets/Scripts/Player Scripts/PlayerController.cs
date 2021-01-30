@@ -45,11 +45,14 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 impulse = new Vector3(6.0f, 0.0f, 0.0f);
 
+    public Rigidbody box;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
+        box = GetComponent<Rigidbody>();
 
     }
 
@@ -164,7 +167,7 @@ public class PlayerController : MonoBehaviour
         if (collider.tag == "Box")
         {
             print("BOX BANZAII");
-            GetComponent<Rigidbody>().AddForce(impulse, ForceMode.Impulse);
+            box.AddForce(impulse, ForceMode.Impulse);
         }
 
 
