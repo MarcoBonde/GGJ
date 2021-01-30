@@ -349,16 +349,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  rotationSpeed: 1
+  rotationSpeed: 2
   runningSpeed: 4
   runMultiplier: 1
   screamMultiplier: 30
+  radioMultiplier: 2
   scream: 0
   slider: {fileID: 1490376218}
   berserker: 0
   storageLight: {fileID: 1521194373}
   fork: {fileID: 532786177}
   stunCollider: {fileID: 451458630}
+  radio: 0
+  buttonDownRadio: 0
 --- !u!95 &56138748
 Animator:
   serializedVersion: 3
