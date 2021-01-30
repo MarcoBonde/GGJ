@@ -6,7 +6,8 @@ public class cambia_formaPacco : MonoBehaviour
 {
     public GameObject[] pacchi;
     int UltimoPacco;
-    GameObject packRef;
+    public GameObject packRef;
+    int conterPack;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,21 @@ public class cambia_formaPacco : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CambiaPacco();
+        }
     }
 
     public void CambiaPacco()
     {
+        if (conterPack >= pacchi.Length - 1)
+            conterPack = 0;
+        else
+            conterPack++;
+
         Destroy(packRef);
-        packRef = Instantiate(pacchi[Random.Range(0, pacchi.Length)], transform.position, Quaternion.identity);
+        packRef = Instantiate(pacchi[conterPack], packRef.transform.position, Quaternion.identity);
+        packRef.transform.parent = this.gameObject.transform;
     }
 }
