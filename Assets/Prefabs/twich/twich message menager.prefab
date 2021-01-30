@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5562359875650263176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5562359875650263190}
+  - component: {fileID: 5562359875650263191}
+  m_Layer: 0
+  m_Name: twich message menager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5562359875650263190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562359875650263176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.025421992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5562359875650263191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562359875650263176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3165f9b34aba42b4abf8120025289e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  latestChatter:
+    login: ibonde
+    channel: ibonde
+    message: unity work!!!!!!!!!!!!!!!!!!!!!!!!!!
+    tags:
+      colorHex: '#FFFFFF'
+      displayName: 
+      badges: []
+      emotes: []
+  LightOff:
+    m_PersistentCalls:
+      m_Calls: []
+  RadioOn:
+    m_PersistentCalls:
+      m_Calls: []
+  CambiaPacco:
+    m_PersistentCalls:
+      m_Calls: []
+  MorphPacco:
+    m_PersistentCalls:
+      m_Calls: []
+  SpillOil:
+    m_PersistentCalls:
+      m_Calls: []
+  InsertFakePackage:
+    m_PersistentCalls:
+      m_Calls: []
+  ForkliftOn:
+    m_PersistentCalls:
+      m_Calls: []
+  FallShelves:
+    m_PersistentCalls:
+      m_Calls: []
+  WrongLocationNews:
+    m_PersistentCalls:
+      m_Calls: []
+  FakeNews:
+    m_PersistentCalls:
+      m_Calls: []
+  TellRealLocation:
+    m_PersistentCalls:
+      m_Calls: []
+  lightCooldown: 0
+  radioCooldown: 0
+  cambioPaccoCooldown: 0
+  MorphPaccoCooldown: 0
+  spillOilCooldown: 0
+  InsertFakePackageCooldown: 0
+  ForkliftCooldown: 0
+  FallShelvesCooldown: 0
+  WrongLocationNewsCooldown: 0
+  FakeNewsCooldown: 0
+  TellRealLocationCooldown: 0
