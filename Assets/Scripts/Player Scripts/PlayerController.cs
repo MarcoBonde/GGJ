@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator fork;
 
-    public Collider stunCollider;
+    //public Collider stunCollider;
 
     public bool radio = false;
     float tempoPremuto;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        box = GetComponent<Rigidbody>();
+        //box = GetComponent<Rigidbody>();
 
     }
 
@@ -161,19 +161,20 @@ public class PlayerController : MonoBehaviour
             print("MOLETTOOO BANZAIII");
             fork.ResetTrigger("isEntered");
             fork.SetTrigger("isEntered");
-            stunCollider.enabled = true;
+            //stunCollider.enabled = true;
         }
 
         if (collider.tag == "Box")
         {
             print("BOX BANZAII");
-            box.AddForce(impulse, ForceMode.Impulse);
+            //box.AddForce(impulse, ForceMode.Impulse);
         }
 
 
         //Stun by an object
         if (collider.tag == "StunCollider")
         {
+            print("Stunned");
             controller.enabled = false;
             rotationSpeed = 0;
             StartCoroutine("Stun");
@@ -204,7 +205,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(4f);
             controller.enabled = true;
             rotationSpeed = 1f;
-            stunCollider.enabled = false;
+            //stunCollider.enabled = false;
         }
     }
 
