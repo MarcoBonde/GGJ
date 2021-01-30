@@ -43,11 +43,16 @@ public class PlayerController : MonoBehaviour
     Vector3 forward;
     float curSpeed;
 
+    public Vector3 impulse = new Vector3(6.0f, 0.0f, 0.0f);
+
+    public Rigidbody box;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
+        box = GetComponent<Rigidbody>();
 
     }
 
@@ -108,19 +113,19 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine("Berserker");
         }
-        print(Input.GetAxis("Horizontal") * rotationSpeed);
+
         //Interaction with Raycast
         if (Input.GetKeyDown(KeyCode.E))
         {
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
                 {
-                    if (hit.collider.gameObject.tag == "cube")
+                    if (hit.collider.gameObject.tag == "Switch")
                     {
-                        pickedUpObject = hit.collider.gameObject;
-                        hit.collider.gameObject.transform.parent = transform;
-                        hit.collider.gameObject.transform.position = transform.position - transform.forward;
+                        //pickedUpObject = hit.collider.gameObject;
+                        //hit.collider.gameObject.transform.parent = transform;
+                        //hit.collider.gameObject.transform.position = transform.position - transform.forward;
                         print("Hit!");
-                        storageLight.intensity = 1;
+                        storageLight.intensity = 13;
                     }
                 }
         }
@@ -158,6 +163,13 @@ public class PlayerController : MonoBehaviour
             fork.SetTrigger("isEntered");
             stunCollider.enabled = true;
         }
+
+        if (collider.tag == "Box")
+        {
+            print("BOX BANZAII");
+            box.AddForce(impulse, ForceMode.Impulse);
+        }
+
 
         //Stun by an object
         if (collider.tag == "StunCollider")
