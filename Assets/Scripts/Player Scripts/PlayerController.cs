@@ -59,7 +59,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
+
+        forward = transform.TransformDirection(Vector3.forward);
+        float curSpeed = movementSpeed * Input.GetAxis("Vertical");
+        controller.SimpleMove(forward * curSpeed);
+
         if (Input.GetButton("Fire3"))
         {
             animator.SetBool("isRunning", true);
