@@ -21,6 +21,8 @@ public class twichMessage : MonoBehaviour
         public UnityEvent JumpEvent;*/
 
     public UnityEvent LightOffEvent;
+    public UnityEvent RadioOnEvent;
+    public UnityEvent CambiaPaccoEvent;
 
     private void Awake()
         {
@@ -71,6 +73,12 @@ public class twichMessage : MonoBehaviour
         if(chatter.message == "turn off light")
         {
             LightOffEvent.Invoke();
+        }else if(chatter.message == "radio on")
+        {
+            RadioOnEvent.Invoke();
+        }else if(chatter.message == "shift pacco")
+        {
+            CambiaPaccoEvent.Invoke();
         }
 
         }
