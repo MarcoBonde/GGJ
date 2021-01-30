@@ -21,7 +21,7 @@ public class Turn_onOFlight : MonoBehaviour
     {
         foreach(Light L in LUCI)
         {
-            L.enabled = true;
+            L.intensity = 13f;
         }
     }
     
@@ -29,7 +29,7 @@ public class Turn_onOFlight : MonoBehaviour
     {
         foreach(Light L in LUCI)
         {
-            L.enabled = false;
+            L.intensity = 1f;
         }
     }
 }
