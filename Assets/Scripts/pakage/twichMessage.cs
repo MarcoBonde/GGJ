@@ -1,28 +1,38 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class twichMessage : MonoBehaviour
 {
-        private TwitchIRC IRC;
-        public Chatter latestChatter;
-    /*
-        public UnityEvent randomEvent;
-        public UnityEvent MoveforwordEvent;
-        public UnityEvent MovebackEvent;
-        public UnityEvent MoveLeftEvent;
-        public UnityEvent MoveRightEvent;
-        [Space(10)]
-        public UnityEvent DashforwordEvent;
-        public UnityEvent DashbackEvent;
-        public UnityEvent DashLeftEvent;
-        public UnityEvent DashRightEvent;
-        public UnityEvent JumpEvent;*/
+    private TwitchIRC IRC;
+    public Chatter latestChatter;
+    public UnityEvent LightOff, RadioOn, CambiaPacco, MorphPacco, SpillOil, InsertFakePackage, ForkliftOn, FallShelves, WrongLocationNews, FakeNews, TellRealLocation;
+    public float lightCooldown;
+    public float radioCooldown;
+    public float cambioPaccoCooldown;
+    public float MorphPaccoCooldown;
+    public float spillOilCooldown;
+    public float InsertFakePackageCooldown;
+    public float ForkliftCooldown;
+    public float FallShelvesCooldown;
+    public float WrongLocationNewsCooldown;
+    public float FakeNewsCooldown;
+    public float TellRealLocationCooldown;
+    private bool canLight;
+    private bool canRadio;
+    private bool canCambioPacco;
+    private bool canMorphPacco;
+    private bool canSpillOil;
+    private bool canInsertFakePackage;
+    private bool canForklift;
+    private bool canFallShelves;
+    private bool canWrongNews;
+    private bool canfakeNews;
+    private bool canTellRealLocation;
 
-    public UnityEvent LightOffEvent;
-    public UnityEvent RadioOnEvent;
-    public UnityEvent CambiaPaccoEvent;
+
 
     private void Awake()
         {
@@ -31,55 +41,189 @@ public class twichMessage : MonoBehaviour
 
             // Add an event listener
             IRC.newChatMessageEvent.AddListener(NewMessage);
+            canLight = true;
+            canRadio = true;
+            canCambioPacco = true;
+            canMorphPacco = true;
+            canSpillOil = true;
+            canInsertFakePackage = true;
+            canForklift = true;
+            canFallShelves = true;
+            canWrongNews = true;
+            canfakeNews = true;
+            canTellRealLocation = true;
         }
 
         // This gets called whenever a new chat message appears
         public void NewMessage(Chatter chatter)
         {
-        /*
-            if (chatter.message == "random move")
-            {
-              randomEvent.Invoke();
-            }else if(chatter.message == "move forward")
-            {
-              MoveforwordEvent.Invoke();
-            }else if(chatter.message == "move back")
-            {
-              MovebackEvent.Invoke();
-            }else if(chatter.message == "move left")
-            {
-              MoveLeftEvent.Invoke();
-            }else if(chatter.message == "move right")
-            {
-              MoveRightEvent.Invoke();
-            }else if(chatter.message == "dash forword")
-            {
-              DashforwordEvent.Invoke();
-            }else if(chatter.message == "dash back")
-            {
-              DashbackEvent.Invoke();
-            }else if(chatter.message == "dash left")
-            {
-              DashLeftEvent.Invoke();
-            }else if(chatter.message == "dash right")
-            {
-              DashRightEvent.Invoke();
-            }else if(chatter.message == "jump")
-            {
-              JumpEvent.Invoke();
-            }
-        */
 
-        if(chatter.message == "turn off light")
+        if(chatter.message.ToLower() == "turn off light")
         {
-            LightOffEvent.Invoke();
-        }else if(chatter.message == "radio on")
-        {
-            RadioOnEvent.Invoke();
-        }else if(chatter.message == "shift pacco")
-        {
-            CambiaPaccoEvent.Invoke();
+            if (canLight)
+            {
+                LightOff.Invoke();
+                canLight = false;
+                lightCountdown();
+            }            
         }
-
+        else if(chatter.message.ToLower() == "radio on")
+        {
+            if (canRadio)
+            {
+                RadioOn.Invoke();
+                canRadio = false;
+                radioCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "swap package")
+        {
+            if (canCambioPacco)
+            {
+                CambiaPacco.Invoke();
+                canCambioPacco = false;
+                cambioPaccoCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "morph package")
+        {
+            if (canMorphPacco)
+            {
+                MorphPacco.Invoke();
+                canMorphPacco = false;
+                morphPaccoCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "spill oil")
+        {
+            if (canSpillOil)
+            {
+                SpillOil.Invoke();
+                canSpillOil = false;
+                spillOilCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "fall shelves")
+        {
+            if (canFallShelves)
+            {
+                FallShelves.Invoke();
+                canFallShelves = false;
+                fallShelvesCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "fake news")
+        {
+            if (canfakeNews)
+            {
+                FakeNews.Invoke();
+                canfakeNews = false;
+                fakeNewsCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "fake location")
+        {            
+            if (canWrongNews)
+            {
+                WrongLocationNews.Invoke();
+                canWrongNews = false;
+                wrongNewsCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "real location")
+        {            
+            if (canTellRealLocation)
+            {
+                TellRealLocation.Invoke();
+                canTellRealLocation = false;
+                realLocationCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "fake package")
+        {
+           
+            if (canInsertFakePackage)
+            {
+                InsertFakePackage.Invoke();
+                canInsertFakePackage = false;
+                fakePackageCountdown();
+            }
+        }
+        else if (chatter.message.ToLower() == "forklift")
+        {
+            if (canForklift)
+            {
+                ForkliftOn.Invoke();
+                canForklift = false;
+                forkliftCountdown();
+            }
         }
     }
+
+    IEnumerator forkliftCountdown()
+    {
+        yield return new WaitForSeconds(ForkliftCooldown);
+        canForklift = true;
+    }
+
+    IEnumerator fakePackageCountdown()
+    {
+        yield return new WaitForSeconds(InsertFakePackageCooldown);
+        canInsertFakePackage = true;
+    }
+
+    IEnumerator realLocationCountdown()
+    {
+        yield return new WaitForSeconds(WrongLocationNewsCooldown);
+        canTellRealLocation = true;
+    }
+
+    IEnumerator wrongNewsCountdown()
+    {
+        yield return new WaitForSeconds(WrongLocationNewsCooldown);
+        canWrongNews = true;
+    }
+
+    IEnumerator fakeNewsCountdown()
+    {
+        yield return new WaitForSeconds(FakeNewsCooldown);
+        canfakeNews = true;
+    }
+
+    IEnumerator fallShelvesCountdown()
+    {
+        yield return new WaitForSeconds(FallShelvesCooldown);
+        canFallShelves = true;
+    }
+
+    IEnumerator spillOilCountdown()
+    {
+        yield return new WaitForSeconds(spillOilCooldown);
+        canSpillOil = true;
+    }
+
+    IEnumerator morphPaccoCountdown()
+    {
+        yield return new WaitForSeconds(MorphPaccoCooldown);
+        canMorphPacco = true;
+    }
+
+    IEnumerator cambioPaccoCountdown()
+    {
+        yield return new WaitForSeconds(cambioPaccoCooldown);
+        canCambioPacco = true;
+    }
+
+    IEnumerator radioCountdown()
+    {
+        yield return new WaitForSeconds(radioCooldown);
+        canRadio = true;
+    }
+
+    IEnumerator lightCountdown()
+    {
+        yield return new WaitForSeconds(lightCooldown);
+        canLight = true;
+    }
+
+}
