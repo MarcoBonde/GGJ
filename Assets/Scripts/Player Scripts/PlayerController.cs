@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public bool berserker = false;
 
-    public Light storageLight ;
+    public GameObject storageLight ;
 
     Vector3 forward;
     float curSpeed;
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                         //hit.collider.gameObject.transform.parent = transform;
                         //hit.collider.gameObject.transform.position = transform.position - transform.forward;
                         print("Hit!");
-                        storageLight.intensity = 13;
+                        storageLight.SetActive(true);
                     }
                 }
         }
