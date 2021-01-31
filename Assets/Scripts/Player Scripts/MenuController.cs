@@ -23,6 +23,11 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void Twitch()
+    {
+        SceneManager.LoadScene(6);
+    }
+
     public void Retry()
     {
         SceneManager.LoadScene(3);
@@ -36,6 +41,9 @@ public class MenuController : MonoBehaviour
     public void SecondCredits()
     {
         SceneManager.LoadScene(2);
+    }
+    public void TwitchSetting() {
+        SceneManager.LoadScene(6);
     }
 
     public void Exit()
