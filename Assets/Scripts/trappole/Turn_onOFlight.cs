@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turn_onOFlight : MonoBehaviour
 {
-    public Light[] LUCI;
+    public GameObject LUCI;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,25 +14,16 @@ public class Turn_onOFlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TurnOFF();
-        }
+
     }
 
     public void TurnON()
     {
-        foreach(Light L in LUCI)
-        {
-            L.intensity = 13f;
-        }
+        LUCI.SetActive(true);
     }
     
     public void TurnOFF()
     {
-        foreach(Light L in LUCI)
-        {
-            L.intensity = 1f;
-        }
+        LUCI.SetActive(false);
     }
 }

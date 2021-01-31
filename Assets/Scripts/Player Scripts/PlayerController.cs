@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public bool berserker = false;
 
-    public Light storageLight ;
+    public GameObject storageLight ;
 
     Vector3 forward;
     float curSpeed;
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
             movementSpeed = 8;
 
-            transform.Rotate(0, Input.GetAxis("Horizontal") * -rotationSpeed, 0);
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
 
             forward = transform.TransformDirection(Vector3.forward);
             curSpeed = movementSpeed * Input.GetAxis("Vertical");
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                         //hit.collider.gameObject.transform.parent = transform;
                         //hit.collider.gameObject.transform.position = transform.position - transform.forward;
                         print("Hit!");
-                        storageLight.intensity = 13;
+                        storageLight.SetActive(true);
                     }
                 }
         }
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(20f);
+            yield return new WaitForSeconds(10f);
             scream = false;
         }
     }
