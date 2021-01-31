@@ -81,10 +81,9 @@ public class TwitchIRC : MonoBehaviour
     [ContextMenu("Connect")]
     public void Connect()
     {
-        HandleTextFile handlerT = new HandleTextFile();
-        details.oauth = HandleTextFile.userAuthString;
-        details.nick = HandleTextFile.userNameString;
-        details.channel = HandleTextFile.userChannelString;
+        details.oauth = HandleTextFile.returnContenuto()[2];
+        details.nick = HandleTextFile.returnContenuto()[1];
+        details.channel = HandleTextFile.returnContenuto()[0];
         if (details.oauth.Length <= 0 || details.nick.Length <= 0 || details.channel.Length <= 0)
         {
             ConnectionStateAlert(StatusType.Error, "Missing required details!");

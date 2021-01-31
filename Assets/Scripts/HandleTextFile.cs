@@ -77,4 +77,12 @@ public class HandleTextFile:MonoBehaviour
         var stringToWrite = nome+","+canale+","+stringAuth;
         WriteString(stringToWrite);
     }
+    public static string[] returnContenuto() {
+        path = "Assets/Resources/setting.txt";
+        StreamReader reader = new StreamReader(path);
+        fileContent = reader.ReadToEnd();
+        reader.Close();
+        string[] content = fileContent.Split(',');
+        return content;
+    }
 }
