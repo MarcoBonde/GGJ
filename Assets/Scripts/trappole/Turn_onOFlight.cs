@@ -14,7 +14,10 @@ public class Turn_onOFlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TurnOFF();
+        }
     }
 
     public void TurnON()

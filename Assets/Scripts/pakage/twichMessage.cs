@@ -64,7 +64,7 @@ public class twichMessage : MonoBehaviour
             {
                 LightOff.Invoke();
                 canLight = false;
-                lightCountdown();
+                StartCoroutine(lightCountdown());
             }            
         }
         else if(chatter.message.ToLower() == "radio on")
@@ -73,7 +73,7 @@ public class twichMessage : MonoBehaviour
             {
                 RadioOn.Invoke();
                 canRadio = false;
-                radioCountdown();
+                StartCoroutine(radioCountdown());
             }
         }
         else if (chatter.message.ToLower() == "swap package")
@@ -82,7 +82,7 @@ public class twichMessage : MonoBehaviour
             {
                 CambiaPacco.Invoke();
                 canCambioPacco = false;
-                cambioPaccoCountdown();
+                StartCoroutine(cambioPaccoCountdown());
             }
         }
         else if (chatter.message.ToLower() == "morph package")
@@ -91,7 +91,7 @@ public class twichMessage : MonoBehaviour
             {
                 MorphPacco.Invoke();
                 canMorphPacco = false;
-                morphPaccoCountdown();
+                StartCoroutine(morphPaccoCountdown());
             }
         }
         else if (chatter.message.ToLower() == "spill oil")
@@ -100,7 +100,7 @@ public class twichMessage : MonoBehaviour
             {
                 SpillOil.Invoke();
                 canSpillOil = false;
-                spillOilCountdown();
+                StartCoroutine(spillOilCountdown());
             }
         }
         else if (chatter.message.ToLower() == "fall shelves")
@@ -109,7 +109,7 @@ public class twichMessage : MonoBehaviour
             {
                 FallShelves.Invoke();
                 canFallShelves = false;
-                fallShelvesCountdown();
+                StartCoroutine(fallShelvesCountdown());
             }
         }
         else if (chatter.message.ToLower() == "fake news")
@@ -118,7 +118,7 @@ public class twichMessage : MonoBehaviour
             {
                 FakeNews.Invoke();
                 canfakeNews = false;
-                fakeNewsCountdown();
+                StartCoroutine(fakeNewsCountdown());
             }
         }
         else if (chatter.message.ToLower() == "fake location")
@@ -127,7 +127,7 @@ public class twichMessage : MonoBehaviour
             {
                 WrongLocationNews.Invoke();
                 canWrongNews = false;
-                wrongNewsCountdown();
+                StartCoroutine(wrongNewsCountdown());
             }
         }
         else if (chatter.message.ToLower() == "real location")
@@ -136,7 +136,7 @@ public class twichMessage : MonoBehaviour
             {
                 TellRealLocation.Invoke();
                 canTellRealLocation = false;
-                realLocationCountdown();
+                StartCoroutine(realLocationCountdown());
             }
         }
         else if (chatter.message.ToLower() == "fake package")
@@ -146,7 +146,7 @@ public class twichMessage : MonoBehaviour
             {
                 InsertFakePackage.Invoke();
                 canInsertFakePackage = false;
-                fakePackageCountdown();
+                StartCoroutine(fakePackageCountdown());
             }
         }
         else if (chatter.message.ToLower() == "forklift")
@@ -155,7 +155,7 @@ public class twichMessage : MonoBehaviour
             {
                 ForkliftOn.Invoke();
                 canForklift = false;
-                forkliftCountdown();
+                StartCoroutine(forkliftCountdown());
             }
         }
     }
