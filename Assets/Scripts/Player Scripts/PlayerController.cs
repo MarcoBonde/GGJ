@@ -155,13 +155,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void startStun() {
+        controller.enabled = false;
+        rotationSpeed = 0;
+        StartCoroutine("Stun");
+    }
+
     IEnumerator WaitButtomToBePressed()
     {
-        while (true)
-        {
             yield return new WaitForSeconds(10f);
             scream = false;
-        }
+        
     }
 
     IEnumerator Berserker()
@@ -173,12 +177,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Stun()
     {
-        while (true)
-        {
             yield return new WaitForSeconds(4f);
             controller.enabled = true;
             rotationSpeed = 1f;
-        }
     }
 }
 

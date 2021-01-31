@@ -25,14 +25,26 @@ public class GameManager : MonoBehaviour
 
     public GameObject PackWinRef;
     public GameObject PackFakeRef;
+    private GameObject paccoVittoria;
+
+    private int rndPos;
 
     void Start()
     {
-        Instantiate(PackWinRef);
-        PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
+        paccoVittoria=Instantiate(PackWinRef);
+        rndPos = Random.Range(0, spawnPackage.Length);
+        paccoVittoria.transform.position = spawnPackage[rndPos].position;
         currentTime = startingTime;
     }
 
+    int changePos() {
+        int iniziale = rndPos;
+        int newPos = rndPos;
+        while (newPos == iniziale) {
+            newPos = Random.Range(0, spawnPackage.Length);
+        }
+        return newPos;
+    }
 
     void Update()
     {
@@ -67,7 +79,8 @@ public class GameManager : MonoBehaviour
     }
     public void CambiaPosPacco()
     {
-        PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
+        rndPos = changePos();
+        paccoVittoria.transform.position = spawnPackage[rndPos].position;
     }
     /*
     public void StunForklift()
