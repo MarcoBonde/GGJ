@@ -25,18 +25,7 @@ public class MenuController : MonoBehaviour
 
     public void Retry()
     {
-        print("Ciao");
         SceneManager.LoadScene(3);
-    }
-
-    public void GameOver()
-    {
-        SceneManager.LoadScene(5);
-    }
-
-    public void Win()
-    {
-        SceneManager.LoadScene(4);
     }
 
     public void Credits()

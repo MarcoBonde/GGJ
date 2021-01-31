@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,9 +20,16 @@ public class GameManager : MonoBehaviour
     public Transform[] spawnPackage;
     public GameObject realBox;
 
+    float currentTime = 0f;
+    float startingTime = 600;
+    public TMP_Text countdownText;
+
+    
+
     void Start()
     {
         Instantiate(realBox, spawnPackage[Random.Range(0, spawnPackage.Length)].position, Quaternion.identity);
+        currentTime = startingTime;
     }
 
 
@@ -29,6 +39,16 @@ public class GameManager : MonoBehaviour
         {
             StunPackage();
         }
+
+        currentTime -= 1 * Time.deltaTime;
+        countdownText.text = currentTime.ToString("0");
+
+        if(currentTime <= 0)
+        {
+            currentTime = 0;
+            SceneManager.LoadScene(5);
+        }
+
     }
 
     public void StunPackage()
