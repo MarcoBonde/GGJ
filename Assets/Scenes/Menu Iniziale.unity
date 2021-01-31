@@ -737,7 +737,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1513875426}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: TwitchSetting
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1604,7 +1604,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1513875426}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: Twitch
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1736,7 +1736,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1513875426}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: Twitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
