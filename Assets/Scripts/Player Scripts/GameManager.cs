@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         {
             StunPackage();
         }
-        /*
+        
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         {
             currentTime = 0;
             SceneManager.LoadScene(5);
-        }*/
+        }
 
     }
 

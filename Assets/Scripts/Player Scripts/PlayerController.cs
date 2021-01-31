@@ -28,28 +28,12 @@ public class PlayerController : MonoBehaviour
 
     public Light storageLight ;
 
-    public Animator fork;
-
-    //public Collider stunCollider;
-
-    public bool radio = false;
-    float tempoPremuto;
-    float tempoRadioStart;
-    public bool buttonDownRadio;
-
-
     Vector3 forward;
     float curSpeed;
-
-    public Vector3 impulse = new Vector3(6.0f, 0.0f, 0.0f);
-
-    public Rigidbody box;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        //box = GetComponent<Rigidbody>();
-
     }
 
 
@@ -147,37 +131,10 @@ public class PlayerController : MonoBehaviour
         
         forward = transform.TransformDirection(Vector3.forward) * 100;
         Debug.DrawLine(transform.position, forward, Color.magenta);
-
-        if (radio == true)
-        {
-            slider.value += radioMultiplier * Time.deltaTime;
-
-            keyPressedTimer();
-            if(tempoPremuto > 5f)
-            {
-                radio = false;
-            }
-        }
     }
 
     private void OnTriggerExit (Collider collider)
-    {/*
-        //Animation Forklift
-        if (collider.tag == "Forklift")
-        {
-            print("MOLETTOOO BANZAIII");
-            fork.ResetTrigger("isEntered");
-            fork.SetTrigger("isEntered");
-            //stunCollider.enabled = true;
-        }*/
-
-        if (collider.tag == "Box")
-        {
-            print("BOX BANZAII");
-            //box.AddForce(impulse, ForceMode.Impulse);
-        }
-
-
+    {
         //Stun by an object
         if (collider.tag == "StunCollider")
         {
@@ -193,7 +150,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(20f);
             scream = false;
         }
     }
@@ -212,28 +169,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(4f);
             controller.enabled = true;
             rotationSpeed = 1f;
-            //stunCollider.enabled = false;
         }
-    }
-
-
-    void keyPressedTimer()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            tempoRadioStart = Time.time;
-        }
-
-        if (Input.GetKey(KeyCode.F))
-        {
-            tempoPremuto = Time.time - tempoRadioStart;
-            //Debug.Log("Pressed for : " + tempoPremuto + " Seconds");
-        }
-    }
-
-    public void ChatCallRadio()
-    {
-        radio = true;
     }
 }
 

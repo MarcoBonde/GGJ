@@ -8,12 +8,13 @@ public class OpenLink : MonoBehaviour
 
     public void OpenTwitchLink() {
         Application.OpenURL("https://twitchapps.com/tmi/");
+
     }
     public void GoBack() {
         SceneManager.LoadScene("Menu Iniziale");
     }
     public void SaveSetting() {
         HandleTextFile.writeSetting();
-        //GoBack();
+        GoBack();
     }
 }
