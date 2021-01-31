@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class PlayerController : MonoBehaviour
 {
-
     public float movementSpeed;
     public float rotationSpeed;
     public float runningSpeed;
@@ -13,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
 
-    static Animator animator;
+    public Animator animator;
     private bool isRunning;
     private float isWalking;
 
@@ -50,8 +48,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-
         //box = GetComponent<Rigidbody>();
 
     }
@@ -64,6 +60,12 @@ public class PlayerController : MonoBehaviour
         forward = transform.TransformDirection(Vector3.forward);
         float curSpeed = movementSpeed * Input.GetAxis("Vertical");
         controller.SimpleMove(forward * curSpeed);
+
+
+        if (Input.GetAxis("Vertical") > 0.1f)
+            animator.SetBool("move", true);
+        else
+            animator.SetBool("move", false);
 
         if (Input.GetButton("Fire3"))
         {
