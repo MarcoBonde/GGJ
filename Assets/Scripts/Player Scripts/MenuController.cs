@@ -43,7 +43,7 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     public void TwitchSetting() {
-        SceneManager.LoadScene("TwitchSettings");
+        SceneManager.LoadScene(6);
     }
 
     public void Exit()
