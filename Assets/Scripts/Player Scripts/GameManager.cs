@@ -7,9 +7,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform[] obstacleSpawnPoints;
+    public Transform[] obstacleSpawnPointsOil;
 
-    public GameObject package;
     //public GameObject forklift;
     public GameObject oil;
 
@@ -20,15 +19,16 @@ public class GameManager : MonoBehaviour
     public Transform[] spawnPackage;
     public GameObject realBox;
 
-    float currentTime = 0f;
-    float startingTime = 600;
+    public float currentTime = 0f;
+    public float startingTime = 600;
     public TMP_Text countdownText;
 
-    
+    public GameObject PackWinRef;
+    public GameObject PackFakeRef;
 
     void Start()
     {
-        Instantiate(realBox, spawnPackage[Random.Range(0, spawnPackage.Length)].position, Quaternion.identity);
+        PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
         currentTime = startingTime;
     }
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         {
             StunPackage();
         }
-
+        /*
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
 
@@ -47,15 +47,15 @@ public class GameManager : MonoBehaviour
         {
             currentTime = 0;
             SceneManager.LoadScene(5);
-        }
+        }*/
 
     }
 
     public void StunPackage()
     {
-        Instantiate(package, obstacleSpawnPoints[counterPackage].position, Quaternion.identity);
+        Instantiate(PackFakeRef, spawnPackage[counterPackage].position, Quaternion.identity);
 
-        if(counterPackage <= obstacleSpawnPoints.Length -1)
+        if(counterPackage <= spawnPackage.Length -1)
         {
             counterPackage++;
         }
@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
             counterPackage = 0;
         }
     }
-
+    public void CambiaPosPacco()
+    {
+        PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
+    }
     /*
     public void StunForklift()
     {
@@ -83,9 +86,9 @@ public class GameManager : MonoBehaviour
 
     public void StunOil()
     {
-        Instantiate(package, obstacleSpawnPoints[counterOil]);
+        Instantiate(oil, obstacleSpawnPointsOil[counterOil].transform.position, Quaternion.identity);
 
-        if (counterOil <= obstacleSpawnPoints.Length - 1)
+        if (counterOil <= obstacleSpawnPointsOil.Length - 1)
         {
             counterOil++;
         }

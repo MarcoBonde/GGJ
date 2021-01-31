@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerExit (Collider collider)
-    {
+    {/*
         //Animation Forklift
         if (collider.tag == "Forklift")
         {
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
             fork.ResetTrigger("isEntered");
             fork.SetTrigger("isEntered");
             //stunCollider.enabled = true;
-        }
+        }*/
 
         if (collider.tag == "Box")
         {
