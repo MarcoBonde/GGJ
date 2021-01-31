@@ -58,7 +58,7 @@ public class twichMessage : MonoBehaviour
         public void NewMessage(Chatter chatter)
         {
 
-        if(chatter.message.ToLower() == "turn off light")
+        if(chatter.message.ToLower() == "light off")
         {
             if (canLight)
             {
@@ -149,7 +149,7 @@ public class twichMessage : MonoBehaviour
                 StartCoroutine(fakePackageCountdown());
             }
         }
-        else if (chatter.message.ToLower() == "forklift")
+        else if (chatter.message.ToLower() == "forklift on")
         {
             if (canForklift)
             {
