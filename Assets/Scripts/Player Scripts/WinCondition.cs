@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WinCOndition : MonoBehaviour
+public class WinCondition : MonoBehaviour
 {
 
     void Start()
@@ -14,11 +14,15 @@ public class WinCOndition : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Win"))
+        {
             SceneManager.LoadScene(4);
+        }
     }
+
 }

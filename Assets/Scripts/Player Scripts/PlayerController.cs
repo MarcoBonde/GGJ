@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     Vector3 forward;
     float curSpeed;
+
+    public GameObject winCube;
 
     void Start()
     {
@@ -108,6 +111,8 @@ public class PlayerController : MonoBehaviour
         //Interaction with Raycast
         if (Input.GetKeyDown(KeyCode.E))
         {
+            winCube.SetActive(true);
+
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
                 {
                     if (hit.collider.gameObject.tag == "Switch")
@@ -122,12 +127,16 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-               if(pickedUpObject != null)
+            //winCube.SetActive(false);
+
+               if (pickedUpObject != null)
                {
                 pickedUpObject.transform.parent = null;
                 pickedUpObject = null;
                }
         }
+
+
         
         forward = transform.TransformDirection(Vector3.forward) * 100;
         Debug.DrawLine(transform.position, forward, Color.magenta);

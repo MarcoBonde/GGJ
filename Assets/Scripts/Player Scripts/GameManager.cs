@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Instantiate(PackWinRef);
         PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
         currentTime = startingTime;
     }
