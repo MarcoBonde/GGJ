@@ -19,6 +19,7 @@ public class NewsSpeaker : MonoBehaviour
 
     public List<string> fakeLocation;
     public string locationPackage;
+    public AudioClip introAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,9 @@ public class NewsSpeaker : MonoBehaviour
         swapAudio = Resources.LoadAll<AudioClip>("Sound/swap");
         radioAudio = Resources.LoadAll<AudioClip>("Sound/telefono");
         teleportAudio = Resources.LoadAll<AudioClip>("Sound/teleport");
-        playlist.Add(Resources.Load<AudioClip>("Sound/intro.mp3"));
+        //playlist = new List<AudioClip>();
+        playlist.Add(introAudio);
+        
         StartCoroutine(nextAudio());
     }
 

@@ -81,6 +81,7 @@ public class TwitchIRC : MonoBehaviour
     [ContextMenu("Connect")]
     public void Connect()
     {
+        HandleTextFile handlerT = new HandleTextFile();
         details.oauth = HandleTextFile.userAuthString;
         details.nick = HandleTextFile.userNameString;
         details.channel = HandleTextFile.userChannelString;
