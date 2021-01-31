@@ -57,8 +57,8 @@ public class twichMessage : MonoBehaviour
         // This gets called whenever a new chat message appears
         public void NewMessage(Chatter chatter)
         {
-
-        if(chatter.message.ToLower() == "light off")
+        latestChatter = chatter;
+        if (chatter.message.ToLower() == "light off")
         {
             if (canLight)
             {

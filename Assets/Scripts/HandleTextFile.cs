@@ -83,6 +83,7 @@ public class HandleTextFile:MonoBehaviour
         fileContent = reader.ReadToEnd();
         reader.Close();
         string[] content = fileContent.Split(',');
+
         return content;
     }
 }

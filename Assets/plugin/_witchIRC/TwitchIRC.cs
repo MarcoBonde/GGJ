@@ -44,9 +44,9 @@ public class TwitchIRC : MonoBehaviour
     [System.Serializable]
     public class UserInput
     {
-        public string oauth = string.Empty;
-        public string nick = string.Empty;
-        public string channel = string.Empty;
+        public string oauth = HandleTextFile.returnContenuto()[0];
+        public string nick = HandleTextFile.returnContenuto()[1];
+        public string channel = HandleTextFile.returnContenuto()[2];
     }
 
     [System.Serializable]
@@ -64,6 +64,7 @@ public class TwitchIRC : MonoBehaviour
 
     private void Awake()
     {
+
         if (settings.connectOnStart)
             Connect();
     }
@@ -81,9 +82,6 @@ public class TwitchIRC : MonoBehaviour
     [ContextMenu("Connect")]
     public void Connect()
     {
-        details.oauth = HandleTextFile.returnContenuto()[2];
-        details.nick = HandleTextFile.returnContenuto()[1];
-        details.channel = HandleTextFile.returnContenuto()[0];
         if (details.oauth.Length <= 0 || details.nick.Length <= 0 || details.channel.Length <= 0)
         {
             ConnectionStateAlert(StatusType.Error, "Missing required details!");
