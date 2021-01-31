@@ -32,6 +32,7 @@ public class NewsSpeaker : MonoBehaviour
         swapAudio = Resources.LoadAll<AudioClip>("Sound/swap");
         radioAudio = Resources.LoadAll<AudioClip>("Sound/telefono");
         teleportAudio = Resources.LoadAll<AudioClip>("Sound/teleport");
+        playlist.Add(Resources.Load<AudioClip>("Sound/intro.mp3"));
         StartCoroutine(nextAudio());
     }
 
