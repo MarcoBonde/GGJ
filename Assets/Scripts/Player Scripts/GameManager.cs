@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject PackWinRef;
     public GameObject PackFakeRef;
-    public UnityEvent audioStun, audioSwap, AudioOil;
 
     void Start()
     {
@@ -38,7 +36,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            StunPackage();
+        }
         
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
     public void StunPackage()
     {
         Instantiate(PackFakeRef, spawnPackage[counterPackage].position, Quaternion.identity);
-        audioStun.Invoke();
+
         if(counterPackage <= spawnPackage.Length -1)
         {
             counterPackage++;
@@ -67,7 +68,6 @@ public class GameManager : MonoBehaviour
     public void CambiaPosPacco()
     {
         PackWinRef.transform.position = spawnPackage[Random.Range(0, spawnPackage.Length)].position;
-        audioSwap.Invoke();
     }
     /*
     public void StunForklift()
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     public void StunOil()
     {
         Instantiate(oil, obstacleSpawnPointsOil[counterOil].transform.position, Quaternion.identity);
-        AudioOil.Invoke();
+
         if (counterOil <= obstacleSpawnPointsOil.Length - 1)
         {
             counterOil++;

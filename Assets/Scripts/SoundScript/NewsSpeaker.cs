@@ -60,47 +60,47 @@ public class NewsSpeaker : MonoBehaviour
             }
         }
     }
-    public void addAudioFallShelves()
+    void addAudioFallShelves()
     {
         int i = Random.Range(0, fallShelvesAudio.Length - 1);
         playlist.Add(fallShelvesAudio[i]);
     }
-    public void addAudioFakeNews()
+    void addAudioFakeNews()
     {
         int i = Random.Range(0, fakeNewsAudio.Length - 1);
         playlist.Add(fakeNewsAudio[i]);
     }
-    public void addAudioForklift()
+    void addAudioForklift()
     {
         int i = Random.Range(0, forkliftAudio.Length - 1);
         playlist.Add(forkliftAudio[i]);
     }
-    public void addAudioLight()
+    void addAudioLight()
     {
         int i = Random.Range(0, lightAudio.Length - 1);
         playlist.Add(lightAudio[i]);
     }
-    public void addAudioOil()
+    void addAudioOil()
     {
         int i = Random.Range(0, oilAudio.Length - 1);
         playlist.Add(oilAudio[i]);
     }
-    public void addAudioRage()
+    void addAudioRage()
     {
         int i = Random.Range(0, rageAudio.Length - 1);
         playlist.Add(rageAudio[i]);
     }
-    public void addAudioSwap()
+    void addAudioSwap()
     {
         int i = Random.Range(0, swapAudio.Length - 1);
         playlist.Add(swapAudio[i]);
     }
-    public void addAudioRadio()
+    void addAudioRadio()
     {
         int i = Random.Range(0, radioAudio.Length - 1);
         playlist.Add(radioAudio[i]);
     }
-    public void addAudioTeleport()
+    void addAudioTeleport()
     {
         int i = Random.Range(0, teleportAudio.Length - 1);
         playlist.Add(teleportAudio[i]);
