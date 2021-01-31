@@ -9,7 +9,7 @@ public class spowner_box : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(objectToSpown, 30);
+      
     }
 
     // Update is called once per frame
