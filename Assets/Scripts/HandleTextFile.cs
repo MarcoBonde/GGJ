@@ -16,6 +16,9 @@ public class HandleTextFile:MonoBehaviour
 
     private void Awake() {
         path = "Assets/Resources/setting.txt";
+        if (!File.Exists(path)) {
+            File.WriteAllText(path, "");
+        }
         ReadString();
         UpdateValue();
         writeOnTextbox();
