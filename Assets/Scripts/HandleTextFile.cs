@@ -27,7 +27,7 @@ public class HandleTextFile:MonoBehaviour
         userChannelString = content[1];
         userAuthString = content[2];
     }
-    [MenuItem("Tools/Write file")]
+   // [MenuItem("Tools/Write file")]
     static void WriteString(string whatToWrite)
     {
 
@@ -39,7 +39,7 @@ public class HandleTextFile:MonoBehaviour
         writer.Close();
     }
 
-    [MenuItem("Tools/Read file")]
+    //[MenuItem("Tools/Read file")]
     static void ReadString()
     {
 
