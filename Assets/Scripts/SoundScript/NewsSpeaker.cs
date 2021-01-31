@@ -32,27 +32,29 @@ public class NewsSpeaker : MonoBehaviour
         swapAudio = Resources.LoadAll<AudioClip>("Sound/swap");
         radioAudio = Resources.LoadAll<AudioClip>("Sound/telefono");
         teleportAudio = Resources.LoadAll<AudioClip>("Sound/teleport");
+        StartCoroutine(nextAudio());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (audioPlayer != null) {
-            if (!audioPlayer.isPlaying) {
-                playlist.Remove(playlist[0]);
-                if (playlist[0] != null)
-                {
-                    StartCoroutine(nextAudio());
-                }
-            }
-        }
     }
 
     IEnumerator nextAudio()
     {
-        yield return new WaitForSeconds(3f);
-        audioPlayer.clip = playlist[0];
-        audioPlayer.Play();
+        while (true)
+        {
+            if (audioPlayer != null)
+            {
+                if (!audioPlayer.isPlaying && (playlist[0] != null))
+                {
+                    yield return new WaitForSeconds(3f);
+                    audioPlayer.clip = playlist[0];
+                    audioPlayer.Play();
+                    playlist.Remove(playlist[0]);
+                }
+            }
+        }
     }
     void addAudioFallShelves()
     {
