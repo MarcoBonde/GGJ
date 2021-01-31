@@ -16,9 +16,6 @@ public class HandleTextFile:MonoBehaviour
 
     private void Awake() {
         path = "Assets/Resources/setting.txt";
-        nomeUtente = GameObject.Find("InUser");
-        nomeCanale = GameObject.Find("InChannel");
-        authString = GameObject.Find("InStringa");
         ReadString();
         UpdateValue();
         writeOnTextbox();
@@ -49,15 +46,26 @@ public class HandleTextFile:MonoBehaviour
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
         fileContent = reader.ReadToEnd();
+        try
+        {
+            nomeUtente = GameObject.Find("InUser");
+            nomeCanale = GameObject.Find("InChannel");
+            authString = GameObject.Find("InStringa");
+        }
+        catch {
 
+        }
         reader.Close();
     }
     private static void writeOnTextbox() {
         string[] content = fileContent.Split(',');
-
-        nomeUtente.GetComponent<InputField>().text = content[0];
-        nomeCanale.GetComponent<InputField>().text = content[1];
-        authString.GetComponent<InputField>().text = content[2];
+        try
+        {
+            nomeUtente.GetComponent<InputField>().text = content[0];
+            nomeCanale.GetComponent<InputField>().text = content[1];
+            authString.GetComponent<InputField>().text = content[2];
+        }
+        catch { }
     }
     public static void writeSetting() {
         string nome = nomeUtente.GetComponent<InputField>().text;

@@ -35,6 +35,7 @@ public class TwitchIRC : MonoBehaviour
     public Settings settings;
     public UserInput details;
 
+
     [Header("Client chatter object")]
     public Chatter userChatter;
 
@@ -80,6 +81,9 @@ public class TwitchIRC : MonoBehaviour
     [ContextMenu("Connect")]
     public void Connect()
     {
+        details.oauth = HandleTextFile.userAuthString;
+        details.nick = HandleTextFile.userNameString;
+        details.channel = HandleTextFile.userChannelString;
         if (details.oauth.Length <= 0 || details.nick.Length <= 0 || details.channel.Length <= 0)
         {
             ConnectionStateAlert(StatusType.Error, "Missing required details!");
