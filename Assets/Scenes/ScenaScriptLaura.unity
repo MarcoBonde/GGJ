@@ -360,10 +360,10 @@ MonoBehaviour:
   berserker: 0
   storageLight: {fileID: 1521194373}
   fork: {fileID: 532786177}
-  stunCollider: {fileID: 451458630}
   radio: 0
   buttonDownRadio: 0
   impulse: {x: 6, y: 0, z: 0}
+  box: {fileID: 0}
 --- !u!95 &56138748
 Animator:
   serializedVersion: 3

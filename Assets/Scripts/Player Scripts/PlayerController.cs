@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator fork;
 
-    public Collider stunCollider;
+    //public Collider stunCollider;
 
     public bool radio = false;
     float tempoPremuto;
@@ -52,14 +52,19 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        box = GetComponent<Rigidbody>();
+        //box = GetComponent<Rigidbody>();
 
     }
 
 
     void Update()
     {
-        
+        transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
+
+        forward = transform.TransformDirection(Vector3.forward);
+        float curSpeed = movementSpeed * Input.GetAxis("Vertical");
+        controller.SimpleMove(forward * curSpeed);
+
         if (Input.GetButton("Fire3"))
         {
             animator.SetBool("isRunning", true);
@@ -161,19 +166,20 @@ public class PlayerController : MonoBehaviour
             print("MOLETTOOO BANZAIII");
             fork.ResetTrigger("isEntered");
             fork.SetTrigger("isEntered");
-            stunCollider.enabled = true;
+            //stunCollider.enabled = true;
         }
 
         if (collider.tag == "Box")
         {
             print("BOX BANZAII");
-            box.AddForce(impulse, ForceMode.Impulse);
+            //box.AddForce(impulse, ForceMode.Impulse);
         }
 
 
         //Stun by an object
         if (collider.tag == "StunCollider")
         {
+            print("Stunned");
             controller.enabled = false;
             rotationSpeed = 0;
             StartCoroutine("Stun");
@@ -204,7 +210,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(4f);
             controller.enabled = true;
             rotationSpeed = 1f;
-            stunCollider.enabled = false;
+            //stunCollider.enabled = false;
         }
     }
 
